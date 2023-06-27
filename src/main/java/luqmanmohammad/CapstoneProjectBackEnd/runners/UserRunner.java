@@ -18,7 +18,7 @@ public class UserRunner implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		Faker faker = new Faker(new Locale("it"));
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 2; i++) {
 			try {
 				String name = faker.name().firstName();
 				String surname = faker.name().lastName();
@@ -29,7 +29,7 @@ public class UserRunner implements CommandLineRunner{
 				
 				
 				UserRegistrationPayload user = new UserRegistrationPayload( name, surname, email, password, address, phoneNumber);
-				//userService.create(user);
+				userService.create(user);
 			
 			} catch (Exception e) {
 				System.out.println(e);

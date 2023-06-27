@@ -1,5 +1,6 @@
 package luqmanmohammad.CapstoneProjectBackEnd.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -25,6 +26,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private Date orderDate;
 	
 	//more orders can submit by one User
 	@ManyToOne

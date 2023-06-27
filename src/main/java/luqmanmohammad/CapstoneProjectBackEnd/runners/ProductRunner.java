@@ -21,7 +21,7 @@ public class ProductRunner implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		Faker faker = new Faker(new Locale("it"));
-		for(int i=0; i<20; i++) {
+		for(int i=0; i<2; i++) {
 			try {
 				String name = faker.name().firstName() + "'s Toy";
 		        String description = faker.lorem().sentence();
@@ -31,7 +31,7 @@ public class ProductRunner implements CommandLineRunner{
 		        boolean availability = faker.random().nextBoolean();
 		        
 		        ProductPayload product = new ProductPayload(name, description, price, category, imageUrl, availability);
-		        //productService.create(product);
+		        productService.create(product);
 		        
 			}catch(Exception e) {
 				System.out.println(e);
