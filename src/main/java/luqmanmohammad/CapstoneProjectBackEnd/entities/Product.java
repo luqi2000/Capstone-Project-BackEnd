@@ -24,7 +24,6 @@ public class Product {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
-		
 		private String name;
 		private String description;
 		private BigDecimal price;
@@ -36,5 +35,18 @@ public class Product {
 		//one product can have multiple shopping card
 		@OneToMany(mappedBy = "products")
 		private List<Cart> card;
+
+
+		public Product(String name, String description, BigDecimal price, String category, String img, int availability,
+				List<Cart> card) {
+			super();
+			this.name = name;
+			this.description = description;
+			this.price = price;
+			this.category = category;
+			this.img = img;
+			this.availability = availability;
+			this.card = card;
+		}
 	
 }

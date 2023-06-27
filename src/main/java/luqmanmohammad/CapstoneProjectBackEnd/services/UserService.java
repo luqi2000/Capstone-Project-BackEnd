@@ -33,7 +33,7 @@ public class UserService {
 	
 	//3 search by id
 	public User findById(long id) throws NotFoundException {
-		return userRepo.findById(id).orElseThrow(() -> new NotFoundException("employee not found!"));
+		return userRepo.findById(id).orElseThrow(() -> new NotFoundException("user not found!"));
 	}
 	
 	//3.2 search by email
