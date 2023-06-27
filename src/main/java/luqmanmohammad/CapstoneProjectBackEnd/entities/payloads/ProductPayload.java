@@ -20,7 +20,7 @@ public class ProductPayload {
 	@NotNull(message = "img is required")
 	private String img;
 	@NotNull(message = "availability is required")
-	private int availability;
+	private boolean availability;
 	
 	public ProductPayload(
 			@NotNull(message = "name is required") String name,
@@ -28,7 +28,7 @@ public class ProductPayload {
 			@NotNull(message = "price is required") BigDecimal price,
 			@NotNull(message = "category is required") String category,
 			@NotNull(message = "img is required") String img,
-			@NotNull(message = "availability is required") int availability) {
+			@NotNull(message = "availability is required") boolean availability) {
 		super();
 		this.name = name;
 		this.description = description;

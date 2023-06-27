@@ -3,23 +3,21 @@ package luqmanmohammad.CapstoneProjectBackEnd.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import luqmanmohammad.CapstoneProjectBackEnd.entities.Product;
-import luqmanmohammad.CapstoneProjectBackEnd.entities.User;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.payloads.ProductPayload;
-import luqmanmohammad.CapstoneProjectBackEnd.entities.payloads.UserRegistrationPayload;
-import luqmanmohammad.CapstoneProjectBackEnd.exceptions.BadRequestException;
 import luqmanmohammad.CapstoneProjectBackEnd.exceptions.NotFoundException;
 import luqmanmohammad.CapstoneProjectBackEnd.repositories.ProductRepository;
-import luqmanmohammad.CapstoneProjectBackEnd.repositories.UserRepository;
 
+@Service
 public class ProductService {
 	@Autowired
 	ProductRepository productRepo;
 	
 	// 1. create product
 	public void create(ProductPayload a) {
-		Product product = new Product(a.getName(), a.getDescription(), a.getPrice(), a.getCategory(), a.getImg(), a.getAvailability(), null);
+		Product product = new Product(a.getName(), a.getDescription(), a.getPrice(), a.getCategory(), a.getImg(),true, null);
 		productRepo.save(product);
 	}
 	
@@ -48,7 +46,7 @@ public class ProductService {
 		found.setPrice(body.getPrice());
 		found.setCategory(body.getCategory());
 		found.setImg(body.getImg());
-		found.setAvailability(body.getAvailability());
+		found.setAvailability(false);
 		
 		return productRepo.save(found);
 	}

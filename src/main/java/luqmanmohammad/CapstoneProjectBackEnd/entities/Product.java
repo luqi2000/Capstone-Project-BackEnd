@@ -29,7 +29,7 @@ public class Product {
 		private BigDecimal price;
 		private String category;
 		private String img;
-		private int availability;
+		private Boolean availability;
 		
 		
 		//one product can have multiple shopping card
@@ -37,8 +37,8 @@ public class Product {
 		private List<Cart> card;
 
 
-		public Product(String name, String description, BigDecimal price, String category, String img, int availability,
-				List<Cart> card) {
+		public Product(String name, String description, BigDecimal price, String category, String img,
+				boolean availability, List<Cart> card) {
 			super();
 			this.name = name;
 			this.description = description;
@@ -48,5 +48,4 @@ public class Product {
 			this.availability = availability;
 			this.card = card;
 		}
-	
 }
