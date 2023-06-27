@@ -1,12 +1,12 @@
 package luqmanmohammad.CapstoneProjectBackEnd.entities;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -15,26 +15,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "products")
+@Table(name = "orders")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Product {
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
-		
-		private String name;
-		private String description;
-		private BigDecimal price;
-		private String category;
-		private String img;
-		private int availability;
-		
-		
-		//one product can have multiple shopping card
-		@OneToMany(mappedBy = "products")
-		private List<Cart> card;
+@AllArgsConstructor
+public class Order {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
+	
+	//more orders can submit by one User
+	@ManyToOne
+	private User user;
+	
+	//one order can have more elements from cart
+	@OneToMany(mappedBy = "order")
+	List<Cart> cart;
+
 }
