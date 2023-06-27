@@ -36,6 +36,20 @@ public class User {
 	private Role role;
 	
 	
+	public User(String name, String surname, String email, String password, String address, String phoneNumber,
+			Role role, List<Order> orders) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.role = role.User; //this mean that when you create a User this will be a normal user and not an Admin
+		this.orders = orders;
+	}
+
+
 	//one user can submit a List of orders
 	@OneToMany(mappedBy = "user")
 	List<Order> orders;
