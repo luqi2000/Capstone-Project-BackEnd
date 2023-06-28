@@ -1,6 +1,7 @@
 package luqmanmohammad.CapstoneProjectBackEnd.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+//this is the class for the elemets in che cart
 @Entity
 @Table(name = "carts")
 @Getter
@@ -22,12 +24,14 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private int quantity;
+	
 	//more Cart can have a only one product
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Product products;
 	
 	//more elements from cart are related from only one order
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Order order;
 	
 }
