@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.Cart;
+import luqmanmohammad.CapstoneProjectBackEnd.entities.CartItem;
+import luqmanmohammad.CapstoneProjectBackEnd.entities.Product;
+import luqmanmohammad.CapstoneProjectBackEnd.entities.User;
 import luqmanmohammad.CapstoneProjectBackEnd.exceptions.NotFoundException;
 import luqmanmohammad.CapstoneProjectBackEnd.repositories.CartRepository;
 
@@ -42,5 +45,22 @@ public class CartService {
 		Cart found = this.findById(id);
 		cartRepo.delete(found);
 	}
+	
+	public void addItemToCart(User user, Product product, int quantity) {
+        Cart cart = user.getCart();
+
+        CartItem existingCartItem = cart.getCartItemByProduct(product);
+
+        if (existingCartItem != null) {
+            // If the product already exists in the cart, update the quantity
+            existingCartItem.setQuantity(existingCartItem.getQuantity() + quantity);
+        } else {
+            CartItem cartItem = new CartItem(quantity, product);
+            cart.addCartItem(cartItem);
+        }
+
+        // Save the updated cart in the database
+        cartRepo.save(cart);
+    }
 
 }

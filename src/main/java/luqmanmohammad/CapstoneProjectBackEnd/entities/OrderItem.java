@@ -34,6 +34,14 @@ public class OrderItem {
 	private Order order;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	private Cart cart;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Product product;
+	
+	public OrderItem(int quantity, Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
 
 }

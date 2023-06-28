@@ -1,7 +1,9 @@
 package luqmanmohammad.CapstoneProjectBackEnd.entities;
 
 import java.util.List;
+import java.util.ArrayList;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -9,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,10 +51,17 @@ public class User {
 		this.role = role.User; //this mean that when you create a User this will be a normal user and not an Admin
 		this.orders = orders;
 	}
-
+	
+	//one user can have only one Cart
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cart cart;
 
 	//one user can submit a List of orders
-	@OneToMany(mappedBy = "user")
-	List<Order> orders;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+	
+	public Cart getCart() {
+        return cart;
+    }
 	
 }
