@@ -3,19 +3,20 @@ package luqmanmohammad.CapstoneProjectBackEnd.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import luqmanmohammad.CapstoneProjectBackEnd.entities.Order;
 import luqmanmohammad.CapstoneProjectBackEnd.exceptions.NotFoundException;
 import luqmanmohammad.CapstoneProjectBackEnd.repositories.OrderRepository;
 
-
+@Service
 public class OrderService {
 	@Autowired
 	OrderRepository orderRepo;
 	
 	// 1. create Order
-	public void create(Order a) {
-		orderRepo.save(a);
+	public Order create(Order a) {
+		return orderRepo.save(a);
 	}
 	
 	// 2. search all orders
