@@ -16,9 +16,9 @@ public class ProductService {
 	ProductRepository productRepo;
 	
 	// 1. create product
-	public void create(ProductPayload a) {
+	public Product create(ProductPayload a) {
 		Product product = new Product(a.getName(), a.getDescription(), a.getPrice(), a.getCategory(), a.getImg(),true, null);
-		productRepo.save(product);
+		return productRepo.save(product);
 	}
 	
 	// 2. search all product
