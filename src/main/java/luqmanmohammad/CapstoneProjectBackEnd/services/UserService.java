@@ -17,13 +17,13 @@ public class UserService {
 	UserRepository userRepo;
 	
 	// 1. create user
-	public void create(UserRegistrationPayload a) {
+	public User create(UserRegistrationPayload a) {
 		userRepo.findByEmail(a.getEmail()).ifPresent(user -> {
 			throw new BadRequestException("email already register");
 		});
 		
 		User user = new User(a.getName(), a.getSurname(), a.getEmail(), a.getPassword(),a.getAddress(), a.getPhoneNumber(), null, null);
-		userRepo.save(user);
+		return userRepo.save(user);
 	}
 	
 	// 2. search all users
