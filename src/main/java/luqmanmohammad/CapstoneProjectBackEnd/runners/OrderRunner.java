@@ -12,7 +12,6 @@ import luqmanmohammad.CapstoneProjectBackEnd.entities.User;
 import luqmanmohammad.CapstoneProjectBackEnd.repositories.OrderRepository;
 import luqmanmohammad.CapstoneProjectBackEnd.services.UserService;
 
-
 @Component
 public class OrderRunner implements CommandLineRunner{
 	

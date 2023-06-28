@@ -6,32 +6,34 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//Cart represents an item in a user's shopping cart during their shopping session.
+//OrderItem represents an item of an order placed and stored in the system. 
+//When a user completes the purchase and places the order, the Cart are
+//converted into OrderItems and are associated with the specific order. 
+//OrderItems are then permanently registered in the system as part of 
+//the order and contain information such as product, quantity ordered and unit price.
+
 @Entity
-@Table(name = "carts")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cart {
+public class OrderItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private int quantity;
+    private double unitPrice;
 	
-	//more Cart can have a only one product
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Product products;
-	
-	//more elements from cart are related from only one order
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Order order;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Product product;
+
 }

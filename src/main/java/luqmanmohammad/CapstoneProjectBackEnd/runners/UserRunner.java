@@ -3,12 +3,13 @@ package luqmanmohammad.CapstoneProjectBackEnd.runners;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import com.github.javafaker.Faker;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.payloads.UserRegistrationPayload;
 import luqmanmohammad.CapstoneProjectBackEnd.services.UserService;
 
-
+@Order(1)
 @Component
 public class UserRunner implements CommandLineRunner{
 	
@@ -23,13 +24,13 @@ public class UserRunner implements CommandLineRunner{
 				String name = faker.name().firstName();
 				String surname = faker.name().lastName();
 				String email = faker.internet().emailAddress();
-				String password  = faker.code().asin();
+				String password  = faker.internet().password();
 				String address = faker.address().fullAddress();
 				String phoneNumber = faker.phoneNumber().phoneNumber();
 				
 				
 				UserRegistrationPayload user = new UserRegistrationPayload( name, surname, email, password, address, phoneNumber);
-				userService.create(user);
+				//userService.create(user);
 			
 			} catch (Exception e) {
 				System.out.println(e);

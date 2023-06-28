@@ -35,6 +35,9 @@ public class Product {
 		//one product can have multiple shopping card
 		@OneToMany(mappedBy = "products")
 		private List<Cart> card;
+		
+		@OneToMany(mappedBy = "product")
+		private List<OrderItem> orderItems;
 
 
 		public Product(String name, String description, BigDecimal price, String category, String img,

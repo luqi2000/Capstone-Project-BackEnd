@@ -32,6 +32,9 @@ public class Order {
 	@ManyToOne
 	private User user;
 	
+	@OneToMany(mappedBy = "order")
+	private List<OrderItem> orderItem;
+	
 	//one order can have more elements from cart
 	@OneToMany(mappedBy = "order")
 	List<Cart> cart;

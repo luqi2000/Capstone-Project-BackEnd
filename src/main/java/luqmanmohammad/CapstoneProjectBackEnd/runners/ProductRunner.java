@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.github.javafaker.Faker;
@@ -12,6 +13,7 @@ import com.github.javafaker.Faker;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.payloads.ProductPayload;
 import luqmanmohammad.CapstoneProjectBackEnd.services.ProductService;
 
+@Order(0)
 @Component
 public class ProductRunner implements CommandLineRunner{
 	
@@ -31,7 +33,7 @@ public class ProductRunner implements CommandLineRunner{
 		        boolean availability = faker.random().nextBoolean();
 		        
 		        ProductPayload product = new ProductPayload(name, description, price, category, imageUrl, availability);
-		        productService.create(product);
+		        //productService.create(product);
 		        
 			}catch(Exception e) {
 				System.out.println(e);
