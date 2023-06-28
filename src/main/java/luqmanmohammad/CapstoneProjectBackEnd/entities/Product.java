@@ -3,6 +3,8 @@ package luqmanmohammad.CapstoneProjectBackEnd.entities;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,12 +35,15 @@ public class Product {
 		
 		
 		//one product can have multiple shopping card
+		@JsonIgnore
 		@OneToMany(mappedBy = "products")
 		private List<Cart> card;
 		
+		@JsonIgnore
 		@OneToMany(mappedBy = "product")
 		private List<OrderItem> orderItems;
 		
+		@JsonIgnore
 		@OneToMany(mappedBy = "product")
 		private List<CartItem> cartItem;
 

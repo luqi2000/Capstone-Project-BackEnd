@@ -1,5 +1,7 @@
 package luqmanmohammad.CapstoneProjectBackEnd.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -30,9 +32,11 @@ public class OrderItem {
 	private int quantity;
     private double unitPrice;
 	
+    @JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Order order;
 	
+    @JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cart cart;
 	

@@ -1,6 +1,9 @@
 package luqmanmohammad.CapstoneProjectBackEnd.entities;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
@@ -53,10 +56,12 @@ public class User {
 	}
 	
 	//one user can have only one Cart
+	@JsonIgnore
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Cart cart;
 
 	//one user can submit a List of orders
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 	

@@ -1,5 +1,7 @@
 package luqmanmohammad.CapstoneProjectBackEnd.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,16 +17,17 @@ public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long id;
-
-	 @ManyToOne
-	  private Cart cart;
 	
-	 @ManyToOne
-	  private Product product;
+	@JsonIgnore
+	@ManyToOne
+	 private Cart cart;
+	
+	@ManyToOne
+	 private Product product;
 
-	  private int quantity;
+	 private int quantity;
 	  
-	  public CartItem(int quantity, Product product) {
+	 public CartItem(int quantity, Product product) {
 	        this.quantity = quantity;
 	        this.product = product;
 	    }

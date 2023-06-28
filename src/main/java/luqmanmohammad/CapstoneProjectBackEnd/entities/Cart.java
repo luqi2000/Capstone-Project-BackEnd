@@ -3,6 +3,9 @@ package luqmanmohammad.CapstoneProjectBackEnd.entities;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 import jakarta.persistence.CascadeType;
@@ -33,19 +36,23 @@ public class Cart {
     private Long id;
 
     private int quantity;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
-
+    
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Product products;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItems;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
