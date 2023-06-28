@@ -14,8 +14,8 @@ public class CartService {
 	CartRepository cartRepo;
 	
 	// 1. create CartItem
-	public void create(Cart a) {
-		cartRepo.save(a);
+	public Cart create(Cart a) {
+		return cartRepo.save(a);
 	}
 	
 	// 2. search all cartItem

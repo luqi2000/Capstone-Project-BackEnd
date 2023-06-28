@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//this is the class for the elemets in che cart
+//this is the class for the elemets in che cart(carrello)
 @Entity
 @Table(name = "carts")
 @Getter
