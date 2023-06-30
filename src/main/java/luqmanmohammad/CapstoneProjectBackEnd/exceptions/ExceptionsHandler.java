@@ -1,13 +1,10 @@
 package luqmanmohammad.CapstoneProjectBackEnd.exceptions;
 
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -34,5 +31,13 @@ public class ExceptionsHandler {
 		System.out.println(e);
 		ErrorsPayload payload = new ErrorsPayload("Errore Generico", new Date(), 500);
 		return new ResponseEntity<ErrorsPayload>(payload, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler(UnauthorizedException.class)
+	public ResponseEntity<ErrorsPayload> handleUnauthorized(UnauthorizedException e) {
+
+		ErrorsPayload payload = new ErrorsPayload(e.getMessage(), new Date(), 401);
+
+		return new ResponseEntity<ErrorsPayload>(payload, HttpStatus.UNAUTHORIZED);
 	}
 }
