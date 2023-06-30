@@ -46,18 +46,27 @@ public class CartController {
 //	}
 	
 	@PostMapping("/add")
-    public ResponseEntity<String> addToCart(@RequestParam Long productId, @RequestParam int quantity, @RequestParam Long userId) {
-        User user = userService.findById(userId);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-        Product product = productService.findById(productId);
-        if (product == null) {
-            return ResponseEntity.notFound().build();
-        }
-        cartService.addItemToCart(user, product, quantity);
-        return ResponseEntity.ok("Prodotto aggiunto al carrello con successo");
-    }
+	public ResponseEntity<String> addToCart(@RequestParam("productId") Long productId, @RequestParam("quantity") int quantity, @RequestParam("userId") Long userId) {
+	    User user = userService.findById(userId);
+	    if (user == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+	    Product product = productService.findById(productId);
+	    if (product == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    Cart cart = user.getCart(); // Fetch the cart object from the user
+
+	    if (cart == null) {
+	        cart = new Cart(user); // If cart is null, create a new Cart object
+	        user.setCart(cart); // Set the cart object in the user
+	    }
+
+	    cartService.addItemToCart(cart, product, quantity); // Utilize the addItemToCart method in the service
+
+	    return ResponseEntity.ok("Prodotto aggiunto al carrello con successo");
+	}
 	
 	 @PostMapping("/order")
 	    public ResponseEntity<Order> createOrderFromCart(@RequestParam Long userId) {

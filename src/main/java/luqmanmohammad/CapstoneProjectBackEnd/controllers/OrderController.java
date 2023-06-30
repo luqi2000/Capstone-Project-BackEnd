@@ -1,6 +1,7 @@
 package luqmanmohammad.CapstoneProjectBackEnd.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import luqmanmohammad.CapstoneProjectBackEnd.entities.Order;
@@ -33,18 +35,36 @@ public class OrderController {
 //	public Order createOrder(Order order) {
 //		return orderService.create(order);
 //	}
-	
-	@PostMapping("")
-	public ResponseEntity<Order> createOrder(@RequestBody Long userId) {
-	    User user = userService.findById(userId);
+    @PostMapping("")
+    public ResponseEntity<Order> createOrder(@RequestBody Map<String, Long> request) {
+        Long userId = request.get("userId");
+        if (userId == null) {
+            return ResponseEntity.badRequest().build();
+        }
 
-	    if (user == null) {
-	        return ResponseEntity.notFound().build();
-	    }
-	    Order order = orderService.createOrderFromCart(user);
-	    return ResponseEntity.status(HttpStatus.CREATED).body(order);
-	}
+        User user = userService.findById(userId);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        try {
+            Order order = orderService.createOrderFromCart(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body(order);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 	
+    @PostMapping("/order")
+    public ResponseEntity<Order> createOrderFromCart(@RequestParam Long userId) {
+        User user = userService.findById(userId);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        Order order = orderService.createOrderFromCart(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(order);
+    }
+	 
 	@GetMapping("")
     public List<Order> getAllOrders() {
         return orderService.findAll();

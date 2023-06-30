@@ -1,5 +1,6 @@
 package luqmanmohammad.CapstoneProjectBackEnd.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,8 @@ public class ProductService {
 	
 	// 1. create product
 	public Product create(ProductPayload a) {
-		Product product = new Product(a.getName(), a.getDescription(), a.getPrice(), a.getCategory(), a.getImg(),true, null);
+		Product product = new Product(a.getName(), a.getDescription(), a.getPrice(), a.getCategory(), a.getImg(),true, null, null, null);
+		BigDecimal unitPrice = a.getPrice();
 		return productRepo.save(product);
 	}
 	

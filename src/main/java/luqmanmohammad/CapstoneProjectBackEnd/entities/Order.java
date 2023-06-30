@@ -43,12 +43,13 @@ public class Order {
 	List<Cart> cart;
 	
     public Order(User user) {
+        this.user = user;
     }
 	
-	public void addOrderItem(OrderItem orderItem) {
-	        orderItems.add(orderItem);
-	        orderItem.setOrder(this);
-	}
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
     public List<OrderItem> getOrderItems() {
         return orderItems;

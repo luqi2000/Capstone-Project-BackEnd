@@ -57,7 +57,7 @@ public class User {
 	
 	//one user can have only one Cart
 	@JsonIgnore
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
     private Cart cart;
 
 	//one user can submit a List of orders

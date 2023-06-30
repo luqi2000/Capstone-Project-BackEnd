@@ -30,7 +30,7 @@ public class UserRunner implements CommandLineRunner{
 				
 				
 				UserRegistrationPayload user = new UserRegistrationPayload( name, surname, email, password, address, phoneNumber);
-				//userService.create(user);
+				userService.create(user);
 			
 			} catch (Exception e) {
 				System.out.println(e);

@@ -32,8 +32,10 @@ public class ProductRunner implements CommandLineRunner{
 		        String imageUrl = faker.internet().image();
 		        boolean availability = faker.random().nextBoolean();
 		        
+		        
+		        
 		        ProductPayload product = new ProductPayload(name, description, price, category, imageUrl, availability);
-		        //productService.create(product);
+		        productService.create(product);
 		        
 			}catch(Exception e) {
 				System.out.println(e);
