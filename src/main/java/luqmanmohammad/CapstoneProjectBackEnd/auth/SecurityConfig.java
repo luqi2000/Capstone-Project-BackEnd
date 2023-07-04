@@ -32,9 +32,8 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		//http.cors(c -> c.disable());
+		
 		http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
-		http.csrf(c -> c.disable());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/user/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/cart/**").authenticated());
@@ -42,7 +41,6 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/products/**").permitAll());
 		
 		http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); //i want to putjwtAuthFilter in a specific point 
-		
 		//disactivated session because we are using in this case JWT so whit stateless it mean without state/session 
 		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); 
 
@@ -50,18 +48,17 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-	    CorsConfiguration configuration = new CorsConfiguration();
-	    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-	    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-	    configuration.setAllowedHeaders(Arrays.asList("*"));
-	    configuration.setAllowCredentials(true);
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Imposta l'origine consentita (il tuo frontend)
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Imposta i metodi consentiti
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Imposta gli header consentiti
 
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/**", configuration);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
 
-	    return source;
-	}
+        return source;
+    }
 	
 	@Bean
 	PasswordEncoder pwEncoder() {

@@ -34,6 +34,12 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 		// 0. This method will be called for every request
 		// 1. First I need to extract the token from the Authorization Header
 		String authHeader = request.getHeader("Authorization");
+		
+        if (request.getRequestURI().startsWith("/products")) {
+            // 2.1 Proceed with the request without token validation
+            filterChain.doFilter(request, response);
+            return;
+        }
 
 		if (authHeader == null || !authHeader.startsWith("Bearer "))
 			throw new UnauthorizedException("please add token to authhorization header");
@@ -72,7 +78,8 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 	// To prevent the filter from running for EVERY request
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) {
-		return new AntPathMatcher().match("/auth/**", request.getServletPath());
+	    String requestPath = request.getServletPath();
+	    return requestPath.startsWith("/auth/") || requestPath.startsWith("/products/");
 	}
 
 }
