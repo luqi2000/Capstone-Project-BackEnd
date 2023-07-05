@@ -21,7 +21,7 @@ public class ProductRunner implements CommandLineRunner {
     public void run(String... args) {
         Faker faker = new Faker();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             // Genera dati casuali per il prodotto
             String name = faker.commerce().productName();
             String description = faker.lorem().sentence();
@@ -34,7 +34,7 @@ public class ProductRunner implements CommandLineRunner {
             ProductPayload product = new ProductPayload(name, description, price, category, img, availability);
 
             // Salva il prodotto utilizzando il ProductService
-            productService.create(product);
+            //productService.create(product);
         }
     }
 
