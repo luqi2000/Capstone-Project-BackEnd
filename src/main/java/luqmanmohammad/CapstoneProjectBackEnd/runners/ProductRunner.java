@@ -39,7 +39,7 @@ public class ProductRunner implements CommandLineRunner {
     }
 
     private String getRandomCategory(Faker faker) {
-        String[] categories = {"giocattoli", "articoli da regalo", "gioielleria"};
+        String[] categories = {"Games", "Gifts", "Jewelry"};
         return faker.options().option(categories);
     }
 

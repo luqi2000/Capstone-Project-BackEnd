@@ -35,6 +35,8 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/cart/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/orders/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/products/**").permitAll());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/api/pagamento/**").permitAll());
+		
 		
 		http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class); //i want to putjwtAuthFilter in a specific point 
 		//disactivated session because we are using in this case JWT so whit stateless it mean without state/session 

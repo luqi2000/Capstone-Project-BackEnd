@@ -40,6 +40,12 @@ public class JWTAuthFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        
+        if (request.getRequestURI().startsWith("/api/pagamento")) {
+            // 2.1 Proceed with the request without token validation
+            filterChain.doFilter(request, response);
+            return;
+        }
 
 		if (authHeader == null || !authHeader.startsWith("Bearer "))
 			throw new UnauthorizedException("please add token to authhorization header");
