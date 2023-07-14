@@ -57,6 +57,8 @@ public class AuthController {
 				if(!bcrypt.matches(body.getPassword(), user.getPassword())) 
 					throw new UnauthorizedException("Credentials not valid"); //matches will return a boolean 
 				String token = JWTTools.createToken(user);
-				return new ResponseEntity<>(new AuthenticationSuccessfullPayload(token), HttpStatus.OK);
+				Long userId = userService.findIdByEmail(user.getEmail());
+				 AuthenticationSuccessfullPayload responsePayload = new AuthenticationSuccessfullPayload(token, userId);
+				    return new ResponseEntity<>(responsePayload, HttpStatus.OK);
 	}
 }

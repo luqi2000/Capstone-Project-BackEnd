@@ -1,6 +1,7 @@
 package luqmanmohammad.CapstoneProjectBackEnd.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,13 @@ public class UserService {
 	//3.2 search by email
 	public User findByEmail(String email) throws NotFoundException {
 		return userRepo.findByEmail(email).orElseThrow(() -> new NotFoundException("email not found"));
+	}
+	
+	//3.3 find id by email
+	public Long findIdByEmail(String email) {
+	    Optional<User> userOptional = userRepo.findByEmail(email);
+	    User user = userOptional.orElseThrow(() -> new NotFoundException("User not found"));
+	    return user.getId();
 	}
 	
 	// 4. find by id and update
