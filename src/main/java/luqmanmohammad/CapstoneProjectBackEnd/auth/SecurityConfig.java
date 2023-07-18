@@ -12,6 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
+import java.util.Arrays;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 //1. start from SecurityConfig as a class that return SecurityFilterChain
 //SecurityFilterChain want as a parameter HttpSecurity as a object and HttpSecurity permit 
 //to configure the security so i can authorize or refuse configuration with a lambda expression
@@ -24,10 +30,30 @@ public class SecurityConfig {
 	
 	@Autowired
 	JWTAuthFilter jwtAuthFilter;
+	
+	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Imposta l'origine consentita per il
+																					// frontend
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Imposta i metodi HTTP
+																						// consentiti
+		configuration.setAllowedHeaders(Arrays.asList("*")); // Imposta gli header consentiti (puoi specificarne uno
+																// elenco invece di "*")
+		configuration.setAllowCredentials(true); // Consenti l'invio dei cookie (se necessario)
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+
+		return source;
+	}
+
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(c -> c.disable());
+		http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 	
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/user/**").authenticated());

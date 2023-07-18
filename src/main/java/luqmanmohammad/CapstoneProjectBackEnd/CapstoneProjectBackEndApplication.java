@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
 @SpringBootApplication
 public class CapstoneProjectBackEndApplication {
 
@@ -16,17 +15,17 @@ public class CapstoneProjectBackEndApplication {
 		SpringApplication.run(CapstoneProjectBackEndApplication.class, args);
 	}
 	
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-	  return new WebMvcConfigurer() {
-	    @Override
-	    public void addCorsMappings(CorsRegistry registry) {
-	      registry.addMapping("/**")
-	        .allowedOriginPatterns("http://localhost:3000")
-	        .allowedMethods("GET", "POST", "PUT", "DELETE")
-	        .allowedHeaders("*")
-	        .allowCredentials(true);
-	    }
-	  };
-	}
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**")
+//                		.allowedOriginPatterns("*")
+//                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//                        .allowedHeaders("Authorization", "Content-Type", "Access-Control-Request-Headers")
+//                        .allowCredentials(true);
+//	    }
+//	  };
+//	}
 }
