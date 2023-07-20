@@ -1,6 +1,5 @@
 package luqmanmohammad.CapstoneProjectBackEnd.runners;
 
-
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,9 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import com.github.javafaker.Faker;
-
 import luqmanmohammad.CapstoneProjectBackEnd.entities.payloads.ProductPayload;
 import luqmanmohammad.CapstoneProjectBackEnd.services.ProductService;
 

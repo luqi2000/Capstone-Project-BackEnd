@@ -71,7 +71,7 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	PasswordEncoder pwEncoder() {
+	public static PasswordEncoder pwEncoder() {
 		return new BCryptPasswordEncoder(10); //10 is the velocity of the result more high it is more slow it will be but is better to have a little bit slow
 	}
 }

@@ -9,7 +9,6 @@ import com.github.javafaker.Faker;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.payloads.UserRegistrationPayload;
 import luqmanmohammad.CapstoneProjectBackEnd.services.UserService;
 
-@Order(1)
 @Component
 public class UserRunner implements CommandLineRunner{
 	
