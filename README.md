@@ -1,6 +1,6 @@
-# Capstone-Project-BackEnd
+# Capstone-Project
 
-## Gift Shop Center
+## Gift Shop Center 🎁
 Gift shop center it's an online shop where you can buy gifts.
 
 ## Features 
@@ -24,4 +24,8 @@ Gift shop center it's an online shop where you can buy gifts.
 - Testing: Postman<br>
 
 ## Utils
-You can find the back-end repository at this link: https://github.com/luqi2000/Capstone-Project-FrontEnd
+You can find the back-end repository at this link: https://github.com/luqi2000/Capstone-Project-BackEnd
+
+## Contact
+- 🤝 Linkedln: https://www.linkedin.com/in/luqman-mohammad-full-stack-developer/
+- 🧑‍💻 Email: luqmanmohammad09@gmail.com
