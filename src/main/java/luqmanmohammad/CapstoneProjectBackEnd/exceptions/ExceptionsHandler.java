@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
 //you will see classes wich one i want to customize
 @RestControllerAdvice
 public class ExceptionsHandler {
@@ -35,9 +34,7 @@ public class ExceptionsHandler {
 	
 	@ExceptionHandler(UnauthorizedException.class)
 	public ResponseEntity<ErrorsPayload> handleUnauthorized(UnauthorizedException e) {
-
 		ErrorsPayload payload = new ErrorsPayload(e.getMessage(), new Date(), 401);
-
 		return new ResponseEntity<ErrorsPayload>(payload, HttpStatus.UNAUTHORIZED);
 	}
 }

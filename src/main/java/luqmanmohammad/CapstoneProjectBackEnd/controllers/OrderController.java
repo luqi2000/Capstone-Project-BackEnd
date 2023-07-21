@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,25 +30,25 @@ public class OrderController {
 	@Autowired
 	UserService userService;
 	
-//	@PostMapping("")
-//	public Order createOrder(Order order) {
-//		return orderService.create(order);
-//	}
     @PostMapping("")
     public ResponseEntity<Order> createOrder(@RequestBody Map<String, Long> request) {
         Long userId = request.get("userId");
+        
         if (userId == null) {
             return ResponseEntity.badRequest().build();
         }
 
         User user = userService.findById(userId);
+        
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
 
         try {
+        	
             Order order = orderService.createOrderFromCart(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(order);
+            
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
         }
@@ -58,9 +57,11 @@ public class OrderController {
     @PostMapping("/order")
     public ResponseEntity<Order> createOrderFromCart(@RequestParam Long userId) {
         User user = userService.findById(userId);
+        
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
+        
         Order order = orderService.createOrderFromCart(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }

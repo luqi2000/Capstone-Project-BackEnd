@@ -5,11 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.Cart;
-import luqmanmohammad.CapstoneProjectBackEnd.entities.CartItem;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.Product;
-import luqmanmohammad.CapstoneProjectBackEnd.entities.User;
 import luqmanmohammad.CapstoneProjectBackEnd.exceptions.NotFoundException;
 import luqmanmohammad.CapstoneProjectBackEnd.repositories.CartRepository;
 
@@ -36,7 +33,6 @@ public class CartService {
 	// 4. find by id and update
 	public Cart findByIdAndUpdate(long id, Cart body) throws NotFoundException {
 		Cart found = this.findById(id);
-
 		found.setId(id);
 		found.setQuantity(body.getQuantity());
 		return cartRepo.save(found);
@@ -52,5 +48,4 @@ public class CartService {
         cart.addItem(product, quantity);
         cartRepo.save(cart);
     }
-
 }

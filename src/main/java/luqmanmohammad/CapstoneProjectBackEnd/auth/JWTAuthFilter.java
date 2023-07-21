@@ -86,5 +86,4 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 	    String requestPath = request.getServletPath();
 	    return requestPath.startsWith("/auth/");
 	}
-
 }

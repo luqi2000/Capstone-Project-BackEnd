@@ -11,7 +11,6 @@ import com.github.javafaker.Faker;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.payloads.ProductPayload;
 import luqmanmohammad.CapstoneProjectBackEnd.services.ProductService;
 
-
 @Component
 public class ProductRunner implements CommandLineRunner {
 

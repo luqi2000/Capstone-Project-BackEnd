@@ -12,5 +12,4 @@ public class AuthenticationSuccessfullPayload {
 		this.accessToken = accessToken;
 		this.userId = userId.toString();
 	}
-	
 }

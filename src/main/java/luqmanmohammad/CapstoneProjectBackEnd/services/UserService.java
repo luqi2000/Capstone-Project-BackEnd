@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import luqmanmohammad.CapstoneProjectBackEnd.entities.User;
@@ -17,9 +16,6 @@ import luqmanmohammad.CapstoneProjectBackEnd.repositories.UserRepository;
 public class UserService {
 	@Autowired
 	UserRepository userRepo;
-	
-	@Autowired
-	private PasswordEncoder bcrypt;
 	
 	// 1. create user
 	public User create(UserRegistrationPayload a) {

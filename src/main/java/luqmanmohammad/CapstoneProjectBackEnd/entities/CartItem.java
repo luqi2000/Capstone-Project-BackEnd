@@ -16,15 +16,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CartItem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 private Long id;
 	
-	@JsonIgnore
-	@ManyToOne
+	 @JsonIgnore
+	 @ManyToOne
 	 private Cart cart;
 	
-	@ManyToOne
+	 @ManyToOne
 	 private Product product;
 
 	 private int quantity;
@@ -37,16 +37,13 @@ public class CartItem {
 	 public CartItem(Product product, int quantity) {
 	        this.product = product;
 	        this.quantity = quantity;
-	    }
+	 }
 	 
 	 public void setCart(Cart cart) {
 		    this.cart = cart;
-	}
+	 }
 
-		public void updateQuantity(int newQuantity) {
+	 public void updateQuantity(int newQuantity) {
 	        this.quantity = newQuantity;
-	    }
-		
-	
-		
+	 }	
 }

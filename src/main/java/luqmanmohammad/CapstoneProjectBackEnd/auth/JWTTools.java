@@ -10,7 +10,6 @@ import luqmanmohammad.CapstoneProjectBackEnd.entities.User;
 import luqmanmohammad.CapstoneProjectBackEnd.exceptions.UnauthorizedException;
 import io.jsonwebtoken.ExpiredJwtException;
 
-
 //this class will generate token so i need static method for create and verify token
 //create token means return token that is a String 
 @Component
@@ -28,6 +27,7 @@ public class JWTTools {
 	public void setSecret(String secretKey) {
 		secret = secretKey;
 	}
+	
 	@Value("${JWT_EXPIRATION}")
 	public void setExpiration(String expirationInDays) {
 		expiration = Integer.parseInt(expirationInDays) * 24 * 60 * 60 * 1000; // calculate in milliseconds of expirationInDays

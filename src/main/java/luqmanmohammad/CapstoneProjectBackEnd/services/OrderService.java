@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import luqmanmohammad.CapstoneProjectBackEnd.entities.Cart;
 import luqmanmohammad.CapstoneProjectBackEnd.entities.CartItem;
@@ -29,8 +28,6 @@ public class OrderService {
 //	public Order create(Order a) {
 //		return orderRepo.save(a);
 //	}
-	
-	
 	
 	public Order createOrderFromCart(User user) {
 	    Cart cart = user.getCart();
