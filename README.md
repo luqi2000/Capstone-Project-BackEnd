@@ -17,8 +17,7 @@ Gift shop center it's an online shop where you can buy gifts.
 ## BackEnd:
 
 - Authorization and authentication<br>
-- Api for products<br>
-- Api for orders
+- Api for products, orders, users, carts, payments
 
 ## Technologies Used
 
