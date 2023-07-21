@@ -54,15 +54,13 @@ public class UserService {
 	}
 	
 	// 4. find by id and update
-	public User findByIdAndUpdate(long id, UserRegistrationPayload body) throws NotFoundException {
+	public User findByIdAndUpdate(long id, User body) throws NotFoundException {
 		User found = this.findById(id);
 
 		found.setId(id);
 		found.setName(body.getName());
 		found.setSurname(body.getSurname());
-		found.setEmail(body.getEmail());
 		found.setAddress(body.getAddress());
-		found.setPassword(bcrypt.encode(body.getPassword()));
 		found.setPhoneNumber(body.getPhoneNumber());
 
 		return userRepo.save(found);
