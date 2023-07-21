@@ -1,8 +1,10 @@
 package luqmanmohammad.CapstoneProjectBackEnd.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import luqmanmohammad.CapstoneProjectBackEnd.entities.User;
@@ -15,6 +17,9 @@ import luqmanmohammad.CapstoneProjectBackEnd.repositories.UserRepository;
 public class UserService {
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	private PasswordEncoder bcrypt;
 	
 	// 1. create user
 	public User create(UserRegistrationPayload a) {
@@ -41,16 +46,21 @@ public class UserService {
 		return userRepo.findByEmail(email).orElseThrow(() -> new NotFoundException("email not found"));
 	}
 	
+	//3.3 find id by email
+	public Long findIdByEmail(String email) {
+	    Optional<User> userOptional = userRepo.findByEmail(email);
+	    User user = userOptional.orElseThrow(() -> new NotFoundException("User not found"));
+	    return user.getId();
+	}
+	
 	// 4. find by id and update
-	public User findByIdAndUpdate(long id, UserRegistrationPayload body) throws NotFoundException {
+	public User findByIdAndUpdate(long id, User body) throws NotFoundException {
 		User found = this.findById(id);
 
 		found.setId(id);
 		found.setName(body.getName());
 		found.setSurname(body.getSurname());
-		found.setEmail(body.getEmail());
 		found.setAddress(body.getAddress());
-		found.setPassword(body.getPassword());
 		found.setPhoneNumber(body.getPhoneNumber());
 
 		return userRepo.save(found);
